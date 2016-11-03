@@ -27,7 +27,7 @@ function normalizeStringPosix(path, allowAboveRoot) {
             res.charCodeAt(res.length - 1) !== 46/*.*/ ||
             res.charCodeAt(res.length - 2) !== 46/*.*/) {
           if (res.length > 2) {
-            const start = res.length - 1;
+            var start = res.length - 1;
             var j = start;
             for (; j >= 0; --j) {
               if (res.charCodeAt(j) === 47/*/*/)
@@ -73,8 +73,8 @@ function normalizeStringPosix(path, allowAboveRoot) {
 }
 
 function _format(sep, pathObject) {
-  const dir = pathObject.dir || pathObject.root;
-  const base = pathObject.base ||
+  var dir = pathObject.dir || pathObject.root;
+  var base = pathObject.base ||
     ((pathObject.name || '') + (pathObject.ext || ''));
   if (!dir) {
     return base;
@@ -85,7 +85,7 @@ function _format(sep, pathObject) {
   return dir + sep + base;
 }
 
-const posix = {
+var posix = {
   // path.resolve([from ...], to)
   resolve: function resolve() {
     var resolvedPath = '';
@@ -138,8 +138,8 @@ const posix = {
     if (path.length === 0)
       return '.';
 
-    const isAbsolute = path.charCodeAt(0) === 47/*/*/;
-    const trailingSeparator = path.charCodeAt(path.length - 1) === 47/*/*/;
+    var isAbsolute = path.charCodeAt(0) === 47/*/*/;
+    var trailingSeparator = path.charCodeAt(path.length - 1) === 47/*/*/;
 
     // Normalize the path
     path = normalizeStringPosix(path, !isAbsolute);
@@ -324,7 +324,7 @@ const posix = {
       var extIdx = ext.length - 1;
       var firstNonSlashEnd = -1;
       for (i = path.length - 1; i >= 0; --i) {
-        const code = path.charCodeAt(i);
+        var code = path.charCodeAt(i);
         if (code === 47/*/*/) {
           // If we reached a path separator that was not part of a set of path
           // separators at the end of the string, stop now
@@ -396,7 +396,7 @@ const posix = {
     // after any path separator we find
     var preDotState = 0;
     for (var i = path.length - 1; i >= 0; --i) {
-      const code = path.charCodeAt(i);
+      var code = path.charCodeAt(i);
       if (code === 47/*/*/) {
         // If we reached a path separator that was not part of a set of path
         // separators at the end of the string, stop now
