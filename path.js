@@ -1,5 +1,11 @@
 'use strict';
 
+if (!process) {
+  var process = {
+    "cwd" : function () { return '/' }
+  };
+}
+
 function assertPath(path) {
   if (typeof path !== 'string') {
     throw new TypeError('Path must be a string. Received ' + path);
